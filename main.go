@@ -27,7 +27,7 @@ import (
 func main() {
 	var (
 		outputFormat            = flag.String("o", "", "Output format, e.g. json")
-		size                    = flag.Int("size", 100, "Batch size")
+		size                    = flag.Int("size", 1000, "Batch size")
 		rawSrcQuery             = flag.String("sf", "", `Raw query for filtering the source, e.g. {"term":{"user":"olivere"}}`)
 		rawDstQuery             = flag.String("df", "", `Raw query for filtering the destination, e.g. {"term":{"name.keyword":"Oliver"}}`)
 		srcSort                 = flag.String("ssort", "", `Field to sort the source, e.g. "id" or "-id" (prepend with - for descending)`)
