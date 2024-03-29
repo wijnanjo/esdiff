@@ -103,7 +103,11 @@ func (c *Client) Iterate(ctx context.Context, req *elastic.IterateRequest) (<-ch
 			sorter = elastic7.NewFieldSort(field).Order(asc)
 		}
 
-		svc := c.c.Scroll(c.index).Type(c.typ).Size(c.size).SortBy(sorter)
+		svc := c.c.Scroll(c.index)
+		if c.typ !="" {
+			svc = svc.Type(c.typ)
+		}
+		svc = svc.Size(c.size).SortBy(sorter)
 
 		if req.RawQuery != "" {
 			q := elastic7.NewRawStringQuery(req.RawQuery)

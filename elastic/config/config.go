@@ -47,7 +47,10 @@ func Parse(elasticURL string) (*Config, error) {
 	}
 	parts := strings.SplitN(indexAndType, "/", 2)
 	cfg.Index = parts[0]
-	cfg.Type = parts[1]
+	if len(parts) == 2 {
+		cfg.Type = parts[1]
+	}
+	
 	if cfg.Index == "" {
 		return nil, fmt.Errorf("missing index and in elastic parameter %q", elasticURL)
 	}
